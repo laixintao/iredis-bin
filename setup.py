@@ -1,6 +1,10 @@
 import os
 import tarfile
-import urllib.request
+
+try:
+    from urllib.request import urlretrieve
+except ImportError:
+    from urllib import urlretrieve
 
 import shutil
 
@@ -19,7 +23,7 @@ def download_binary(path):
         VERSION
     )
     log.info("Downloading binary from %s", url)
-    urllib.request.urlretrieve(url, os.path.join(path, "iredis.tar.gz"))
+    urlretrieve(url, os.path.join(path, "iredis.tar.gz"))
     tarball = os.path.join(path, "iredis.tar.gz")
     with tarfile.open(tarball, "r:gz") as tar:
         tar.extractall(path)
