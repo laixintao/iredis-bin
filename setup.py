@@ -15,7 +15,9 @@ VERSION = "1.9.4"
 
 
 def download_binary(path):
-    url = f"https://github.com/laixintao/iredis/releases/download/v{VERSION}/iredis.tar.gz"
+    url = "https://github.com/laixintao/iredis/releases/download/v{}/iredis.tar.gz".format(
+        VERSION
+    )
     log.info("Downloading binary from %s", url)
     urllib.request.urlretrieve(url, os.path.join(path, "iredis.tar.gz"))
     tarball = os.path.join(path, "iredis.tar.gz")
