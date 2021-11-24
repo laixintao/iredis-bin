@@ -16,7 +16,7 @@ from distutils import log
 from stat import ST_MODE
 
 
-VERSION = "1.9.4"
+VERSION = "1.9.5"
 
 
 def download_binary(path):
