@@ -29,11 +29,12 @@ class InstallTokei(install_scripts):
         with TemporaryDirectory() as tmpdir:
             binary_path = download_binary(tmpdir)
             target_path = os.path.join(self.install_dir, "iredis")
+            lib_path = os.path.join(self.install_dir, "lib")
             os.makedirs(self.install_dir)
-            log.info("Copying %s to %s", binary_path, target_path)
-            if os.path.exists(target_path):
-                os.remove(target_path)
-            shutil.copytree(binary_path, target_path)
+            log.info("Copying %s/lib to %s", binary_path, lib_path)
+            shutil.copytree(os.path.join(binary_path, "lib"), lib_path)
+            log.info("Copying %s/iredis to %s", binary_path, target_path)
+            shutil.copy2(os.path.join(binary_path, "iredis"), target_path)
         if os.name == "posix":
             mode = ((os.stat(target_path)[ST_MODE]) | 0o555) & 0o7777
             os.chmod(target_path, mode)
