@@ -26,7 +26,7 @@ jobs:
       - name: Build wheels(Linux)
         if: runner.os == 'Linux'
         run: |
-          python -m pip install wheel
+          python -m pip install wheel backports.tempfile
           python setup.py bdist_wheel -p manylinux2010_x86_64
       - name: Test wheel
         run: |

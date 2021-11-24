@@ -10,7 +10,8 @@ import shutil
 
 from setuptools import setup
 from distutils.command.install_scripts import install_scripts
-from tempfile import TemporaryDirectory
+from backports.tempfile import TemporaryDirectory
+
 from distutils import log
 from stat import ST_MODE
 
